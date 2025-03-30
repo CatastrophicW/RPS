@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <script defer src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header id="navbar">
+        <h1>Rock Paper Scissors</h1>
+    </header>
+    
+    <main>
+        <h1 id="pickText">Pick your Pokemon</h1>
+        <div class="container" id="rootButton">
+            <button class="buttons" id="rock">
+                <img draggable="false" src="../img/clenched_9170575.png">
+                <p>Rock</p>
+            </button>
+            <button class="buttons" id="paper">
+                <img draggable="false" src="../img/palm_9170612.png">
+                <p>Paper</p>
+            </button>
+            <button class="buttons" id="scissors">
+                <img draggable="false" src="../img/two-fingers_9170628.png">
+                <p>Scissors</p>
+            </button>
+        </div>
+
+        <section class="container" id="rootGame">
+            <div class="container update" id="rootPicks">
+                <div class="container" id="roundCountCard">
+                    <h2>Round</h2>
+                    <h2 id="roundCount"></h2>
+                </div>
+                <div class="container" id="userPick">
+                    <p>You</p>
+                    <div id="pickImg"><img src="" id="userPickImg"></div>
+                </div>
+                <p>VS</p>
+                <div class="container" id="botPick">
+                    <div id="pickImg"><img src="" id="botPickImg"></div>
+                    <p>Bot</p>
+                </div>
+            </div>
+
+            <div class="container update" id="rootScore">
+                <h2>Total</h2>
+                <div class="container" id="score">
+                    <div class="container" id="totalScore">
+                        <div class="container subText" id="totalWins">
+                            <p>W</p>
+                            <p id="wCount">0</p>
+                        </div>
+                        <div class="container subText" id="totalDraws">
+                            <p>D</p>
+                            <p id="dCount">0</p>
+                        </div>
+                        <div class="container subText" id="totalLosses">
+                            <p>L</p>
+                            <p id="lCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" id="rootCurrent">
+                    <p id="currentScore">Begin</p>
+                </div>
+            </div>
+
+            <div class="container" id="rootHist">
+                <h2>History</h2>
+                <div class="container" id="histCardMain">
+                    <ul class="container" id="prevRounds"></ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

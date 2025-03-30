@@ -1,0 +1,390 @@
+:root {
+    --background-dark: #101828;
+    --background-light: #1e2939;
+    --text-light: #fff;
+    --text-dark: #d1d5dc;
+    --border-color: #3c5888;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--background-dark);
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+img {
+    pointer-events: none;
+}
+
+.subText {
+    color: var(--text-dark);
+    font-size: 20px;
+}
+
+#pickText {
+    text-align: center;
+    padding: 0;
+    margin-top: 1.5em;
+    margin-bottom: 0;
+    color: var(--text-light);
+    min-width: 530px;
+}
+
+.container {
+    display: flex;
+}
+
+#navbar {
+    padding: 1em;
+    background-color: var(--background-light);
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-light);
+    text-align: center;
+}
+
+#navbar h1 {
+    min-width: 500px;
+    margin: 0;
+}
+
+#rootButton {
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    gap: 2.5em;
+    justify-content: center;
+    padding: 2em 7em 2em 7em;
+    min-width: 300px;
+}
+
+.container .buttons {
+    background-color: var(--background-light);
+    border-color: var(--border-color);
+    border-radius: 16px;
+    padding: 3px;
+}
+
+.buttons p {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#rootGame {
+    padding: 1em;
+    justify-content: center;
+    gap: 2em;
+    flex-wrap: wrap;
+    margin: 0 2em;
+    min-width: 435px;
+}
+
+/* =================================================================================== */
+#rootPicks, #rootScore, #rootHist {
+    box-sizing: border-box;
+    background-color: var(--background-light);
+    background-image: radial-gradient(var(--background-light) 40%, rgba(16, 24, 40, 0.5));
+    padding: 1em 5em;
+    border-radius: 16px;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    width: 271px;
+    height: 362px;
+    position: relative;
+}
+
+#rootPicks.win, #rootScore.win, #lastRound.win {
+    background-image: radial-gradient(rgba(16, 24, 40, 0.5) 20%, rgba(0, 95, 44, 0.2));
+}
+
+#rootPicks.loose, #rootScore.loose, #lastRound.loose {
+    background-image: radial-gradient(rgba(16, 24, 40, 0.5) 20%, rgba(95, 0, 44, 0.2));
+}
+
+#rootPicks.draw, #rootScore.draw {
+    background-image: radial-gradient(var(--background-light) 50%, rgba(16, 24, 40, 0.5));
+}
+
+#rootPicks::after, #rootScore::after, #rootPicks::before, #rootScore::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: var(--border-color);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    border-radius: 16px;
+    padding: 2px;
+}
+
+#rootPick.win::before {
+    content: '';
+    background-color: rgba(0, 95, 44);
+}
+
+#rootPick.loose::before {
+    content: '';
+    background-color: rgba(95, 0, 44);
+}
+
+#rootPicks.win::after {
+    content: '';
+    background-color: mediumseagreen;
+    opacity: 0; /* Initial transparency */
+    transition: opacity 5s ease-in-out;
+    animation: fadeIn 3s ease-in-out forwards, pulse 3s infinite ease-in-out;
+}
+
+#rootPicks.loose::after {
+    content: '';
+    background-color: crimson;
+    opacity: 0; /* Initial transparency */
+    transition: opacity 5s ease-in-out;
+    animation: fadeIn 3s ease-in-out forwards, pulse 3s infinite ease-in-out;
+}
+
+#rootPicks.draw::after {
+    content: '';
+    background-color: var(--border-color);
+    transition: opacity 5s ease-in-out;
+    animation: fadeIn 3s ease-in-out forwards, pulse 3s infinite ease-in-out;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+#rootScore.win::after {
+    content: '';
+    background-image: conic-gradient(from var(--angle), rgba(0, 95, 44) 50%, mediumseagreen);
+    animation: 3s spin linear infinite;
+}
+
+#rootScore.loose::after {
+    content: '';
+    background-image: conic-gradient(from var(--angle), rgb(95, 0, 44) 50%, crimson);
+    animation: 3s spin linear infinite;
+}
+
+#rootScores.draw::after {
+    content: '';
+    background-image: var(--border-color);
+}
+
+#lastRound.win {
+    background-image: radial-gradient(rgba(16, 24, 40, 0.5) 20%, rgba(0, 95, 44, 0.4));
+}
+
+#lastRound.loose {
+    background-image: radial-gradient(rgba(16, 24, 40, 0.5) 20%, rgba(95, 0, 44, 0.4));
+}
+
+#lastRound.draw {
+    background-image: radial-gradient(rgba(16, 24, 40, 0.5) 50%, var(--background-light));
+}
+
+/* ============================================================================= */
+#rootHist {
+    border: 2px solid var(--border-color);
+}
+
+h2 {
+    color: var(--text-light);
+    margin: 0.2em;
+}
+
+#roundCountCard {
+    flex-direction: row;
+}
+
+#userPick, #botPick {
+    font-size: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+#pickImg {
+    height: 64px;
+    width: 64px;
+}
+
+#botPick p {
+    margin-bottom: 4.8px;
+}
+
+#rootHist {
+    padding: 1em 0;
+}
+
+#histCardMain {
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+    border-top: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+#histCardMain::-webkit-scrollbar {
+    width: 0;
+}
+
+#histCardMain::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#histCardMain::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#prevRounds {
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: var(--border-color);
+    gap: 1px;
+}
+
+#lastRound {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5em 1em;
+    background-color: var(--background-dark);
+    justify-content: space-between;
+}
+
+#last {
+    gap: 5px;
+    align-items: center;
+}
+
+#result {
+    font-size: 20px;
+    align-content: center;
+    padding: 0 2px;
+}
+
+#lastRoundLabel {
+    flex-direction: column;
+    align-items: center;
+}
+
+#rootScore {
+    padding: 1em 0;
+    justify-content: space-between;
+}
+
+#score {
+    width: 100%;
+    justify-content: space-between;
+}
+
+#totalScore {
+    width: 100%;
+    justify-content: space-around;
+}
+
+#totalWins, #totalDraws, #totalLosses {
+    border: 2px solid;
+    border-radius: 8px;
+    background-color: var(--background-dark);
+    padding: 0.5em 1em;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    width: 1em;
+    overflow-x: hidden;
+}
+
+#totalWins {
+    border-color: mediumseagreen;
+}
+
+#totalDraws {
+    border-color: var(--text-dark);
+}
+
+#totalWins p {
+    color: mediumseagreen;
+}
+
+#totalLosses {
+    border-color: crimson;
+}
+
+#totalDraws p {
+    color: var(--text-dark);
+}
+
+#totalLosses p {
+    color: crimson;
+}
+
+#currentScore {
+    margin-bottom: 1em;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.4;
+        filter: brightness(0.8);
+    }
+    50% {
+        opacity: 1;
+        filter: brightness(1.2);
+    }
+    100% {
+        opacity: 0.4;
+        filter: brightness(0.8);
+    }
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
